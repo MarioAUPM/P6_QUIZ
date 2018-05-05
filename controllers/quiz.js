@@ -156,8 +156,10 @@ exports.check = (req, res, next) => {
 
 exports.randomplay=(req,res,next)=>{
     if(req.session.randomplay===undefined){
-        req.session.randomplay=[];
+        req.session.randomplay=req.session.randomplay || [];
     }
+
+
     const whereOpt={"id":{[Sequelize.Op.notIn]:req.session.randomplay}};
     return models.quiz.count({where:whereOpt})
         .then(count=>{
@@ -199,11 +201,11 @@ exports.randomcheck=(req,res,next)=>{
             req.session.randomplay.push(quiz.id);
         }
         let score =req.session.randomplay.length;
-        res.render('quizzes/random_result',{score,answer,result:result});
+        res.render('quizzes/random_result',{score,answer:answer,result:result});
     }else {
         let score =req.session.randomplay.length;
        req.session.randomplay=[] ;
-        res.render('quizzes/random_result',{score,answer,result:result});
+        res.render('quizzes/random_result',{score,answer:answer,result:result});
 
     }
 
