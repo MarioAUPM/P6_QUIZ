@@ -154,12 +154,12 @@ exports.check = (req, res, next) => {
     });
 };
 
+
+
 exports.randomplay=(req,res,next)=>{
     if(req.session.randomplay===undefined){
-        req.session.randomplay=req.session.randomplay || [];
+        req.session.randomplay=[];
     }
-
-
     const whereOpt={"id":{[Sequelize.Op.notIn]:req.session.randomplay}};
     return models.quiz.count({where:whereOpt})
         .then(count=>{
