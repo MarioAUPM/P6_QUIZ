@@ -9,8 +9,12 @@ exports.load = (req, res, next, quizId) => {
 
     models.quiz.findById(quizId, {
         include: [
-            models.tip,
-            {model: models.user, as: 'author'}
+            {model:models.tip,
+                include:[
+                    {model:models.user, as:'author'}]},
+           {model: models.user, as: 'author'}
+
+
         ]
     })
     .then(quiz => {
@@ -78,7 +82,7 @@ exports.index = (req, res, next) => {
         res.locals.paginate_control = paginate(count, items_per_page, pageno, req.url);
 
         const findOptions = {
-            ...countOptions,
+            countOptions,
             offset: items_per_page * (pageno - 1),
             limit: items_per_page,
             include: [{model: models.user, as: 'author'}]
