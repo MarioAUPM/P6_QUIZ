@@ -26,15 +26,10 @@ sequelize.import(path.join(__dirname,'user'));
 sequelize.import(path.join(__dirname,'session'));
 
 //Creacion quizzes
-
-/*sequelize.sync()
-    .then(()=>
-        sequelize.models.quiz.count()
-=======
 sequelize.sync()
     .then(()=>
     sequelize.models.quiz.count()
->>>>>>> practica6
+
     )
     .then(count=>{
         if(!count){
@@ -57,7 +52,7 @@ sequelize.sync()
     .catch(error => {
         console.log("Error creating the data base tables:", error);
         process.exit(1);
-    });*/
+    });
 
 
 // Relation between models
