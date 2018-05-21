@@ -30,6 +30,11 @@ sequelize.import(path.join(__dirname,'session'));
 /*sequelize.sync()
     .then(()=>
         sequelize.models.quiz.count()
+=======
+sequelize.sync()
+    .then(()=>
+    sequelize.models.quiz.count()
+>>>>>>> practica6
     )
     .then(count=>{
         if(!count){
